@@ -23,46 +23,26 @@ Below is the conceptual state machine diagram governing the PLC controller's ope
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Stopped : Power On
+    [*] --> Disabled : Power On
     
-    state Stopped {
-        [*] --> Disabled
-        Disabled --> Enabled : Start_Button Pressed (NO)
-        Enabled --> Disabled : Stop_Button Pressed (NC) / Motor_Fault Tripped
-    }
+    Disabled --> Gate_Closed : Start Button Pressed (System_Run = True)
     
-    Stopped --> Gate_Closed : System_Run = True
+    Gate_Closed --> Gate_Opening : Vehicle Sensor (Rising Edge)
+    Gate_Closed --> Disabled : Stop Button Pressed / Fault
     
-    state Gate_Closed {
-        [*] --> Idle
-        Idle --> Gate_Opening : Vehicle_Sensor (Rising Edge)
-    }
-
-    state Gate_Opening {
-        [*] --> Motor_Open_On
-        Motor_Open_On --> Dwell_Open : Gate_Open Limit Switch Actuated
-        Motor_Open_On --> Fault_Lockout : Travel_Fault_Timer Done (15s Timeout)
-        Motor_Open_On --> Stopped : System_Run = False (Stop / Fault)
-    }
-
-    state Dwell_Open {
-        [*] --> Dwell_Timer_Active
-        Dwell_Timer_Active --> Gate_Closing : Open_Timer Done (5s Dwell)
-        Dwell_Timer_Active --> Stopped : System_Run = False (Stop / Fault)
-    }
-
-    state Gate_Closing {
-        [*] --> Motor_Close_On
-        Motor_Close_On --> Gate_Closed : Gate_Closed Limit Switch Actuated
-        Motor_Close_On --> Gate_Opening : Obstruction_Sensor Tripped (Auto-Reverse)
-        Motor_Close_On --> Fault_Lockout : Travel_Fault_Timer Done (15s Timeout)
-        Motor_Close_On --> Stopped : System_Run = False (Stop / Fault)
-    }
-
-    state Fault_Lockout {
-        [*] --> Motor_Fault_Active
-        Motor_Fault_Active --> Stopped : Stop_Button Pressed (Fault Reset)
-    }
+    Gate_Opening --> Dwell_Open : Gate_Open Limit Switch Actuated
+    Gate_Opening --> Fault_Lockout : 15s Travel Timeout (Motor_Fault = True)
+    Gate_Opening --> Disabled : Stop Button Pressed / Interrupted
+    
+    Dwell_Open --> Gate_Closing : 5s Dwell Timer Done
+    Dwell_Open --> Disabled : Stop Button Pressed / Interrupted
+    
+    Gate_Closing --> Gate_Closed : Gate_Closed Limit Switch Actuated
+    Gate_Closing --> Gate_Opening : Obstruction Sensor Tripped (Auto-Reverse)
+    Gate_Closing --> Fault_Lockout : 15s Travel Timeout (Motor_Fault = True)
+    Gate_Closing --> Disabled : Stop Button Pressed / Interrupted
+    
+    Fault_Lockout --> Disabled : Stop Button Pressed (Fault Reset)
 ```
 
 ---
