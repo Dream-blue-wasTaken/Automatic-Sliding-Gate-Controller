@@ -21,29 +21,37 @@ The system has been fully tested and simulated within the OpenLadder IDE environ
 
 Below is the conceptual state machine diagram governing the PLC controller's operation:
 
+
 ```mermaid
 stateDiagram-v2
-    [*] --> Disabled : Power On
-    
-    Disabled --> Gate_Closed : Start Button Pressed (System_Run = True)
-    
-    Gate_Closed --> Gate_Opening : Vehicle Sensor (Rising Edge)
-    Gate_Closed --> Disabled : Stop Button Pressed / Fault
-    
-    Gate_Opening --> Dwell_Open : Gate_Open Limit Switch Actuated
-    Gate_Opening --> Fault_Lockout : 15s Travel Timeout (Motor_Fault = True)
-    Gate_Opening --> Disabled : Stop Button Pressed / Interrupted
-    
-    Dwell_Open --> Gate_Closing : 5s Dwell Timer Done
-    Dwell_Open --> Disabled : Stop Button Pressed / Interrupted
-    
-    Gate_Closing --> Gate_Closed : Gate_Closed Limit Switch Actuated
-    Gate_Closing --> Gate_Opening : Obstruction Sensor Tripped (Auto-Reverse)
-    Gate_Closing --> Fault_Lockout : 15s Travel Timeout (Motor_Fault = True)
-    Gate_Closing --> Disabled : Stop Button Pressed / Interrupted
-    
-    Fault_Lockout --> Disabled : Stop Button Pressed (Fault Reset)
+    [*] --> Disabled : Power on
+
+    Disabled --> Gate_Closed : Start pressed (System_Run latched)
+    note right of Gate_Closed
+        Assumes gate is physically
+        closed at power-on
+    end note
+
+    Gate_Closed --> Gate_Opening : Vehicle sensor (rising edge)
+
+    Gate_Opening --> Dwell_Open : Open limit switch actuated
+    Gate_Opening --> Fault_Lockout : 15s travel timeout (Motor_Fault = true)
+    Gate_Opening --> Disabled : Stop pressed / interrupted
+
+    Dwell_Open --> Gate_Closing : 5s dwell timer done
+    Dwell_Open --> Disabled : Stop pressed (resets Open_Timer)
+
+    Gate_Closing --> Gate_Closed : Close limit switch actuated
+    Gate_Closing --> Gate_Opening : Obstruction sensor tripped (auto-reverse)
+    Gate_Closing --> Fault_Lockout : 15s travel timeout (Motor_Fault = true)
+    Gate_Closing --> Disabled : Stop pressed / interrupted
+
+    Fault_Lockout --> Disabled : Stop pressed (Motor_Fault reset)
+
+    Gate_Closed --> Disabled : Stop pressed / interrupted
 ```
+
+
 
 ---
 
