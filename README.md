@@ -2,7 +2,7 @@
 
 An industrial-grade PLC ladder logic implementation for an automatic sliding gate controller designed and simulated in OpenLadder, featuring safety-hardened auto-reverse and travel fault detection.
 
-## 💻 Simulation in OpenLadder
+##  Simulation in OpenLadder
 
 The system has been fully tested and simulated within the OpenLadder IDE environment:
 
@@ -17,7 +17,7 @@ The system has been fully tested and simulated within the OpenLadder IDE environ
 
 ---
 
-## 📊 State Machine Diagram
+##  State Machine Diagram
 
 Below is the conceptual state machine diagram governing the PLC controller's operation:
 
@@ -47,7 +47,7 @@ stateDiagram-v2
 
 ---
 
-## 🛠️ Design Decisions
+##  Design Decisions
 
 ### 1. Internal Latch Bits vs. Direct Raw Output Control
 Instead of directly driving the physical motor outputs (`Motor_Open` and `Motor_Close`) with latch/unlatch coils, the system uses internal memory state bits (`Gate_Opening` and `Gate_Closing`).
@@ -62,7 +62,7 @@ The vehicle loop detection is processed via edge-detection logic (using `Vehicle
 
 ---
 
-## ⚠️ Known Limitations & Next Steps
+##  Known Limitations & Next Steps
 
 This project is a high-fidelity PLC training simulation. Transitioning it to a production-grade, certifiable industrial gate operator requires addressing the following limitations:
 
