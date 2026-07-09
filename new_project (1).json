@@ -1,0 +1,555 @@
+{
+  "id": "99236be9-56d6-4e15-88c6-ab592fe4deef",
+  "name": "New Project",
+  "lastModified": "2026-07-09T09:11:23.203Z",
+  "variables": [
+    {
+      "name": "Start_Button",
+      "type": "BOOL",
+      "description": "Start the system",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "e2cfae77-81f1-4e7f-8bf9-ea986d5bfd1b",
+      "value": false
+    },
+    {
+      "name": "Stop_Button",
+      "type": "BOOL",
+      "description": "Stop the system",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "bcce4bf8-69b5-4450-b4f7-8c8634b9a7d0",
+      "value": false
+    },
+    {
+      "name": "Vehicle_Sensor",
+      "type": "BOOL",
+      "description": "Detect a car",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "c2f843b3-5211-4634-8d3e-f981cbf66a94",
+      "value": true
+    },
+    {
+      "name": "Gate_Open",
+      "type": "BOOL",
+      "description": "Open limit switch",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "debb8356-8529-4211-8bed-59c24e45e32a",
+      "value": true
+    },
+    {
+      "name": "Gate_Closed",
+      "type": "BOOL",
+      "description": "Closed limit switch",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "e4c8ea47-38b2-49a3-83ee-4658165d19c3",
+      "value": false
+    },
+    {
+      "name": "Motor_Open",
+      "type": "BOOL",
+      "description": "Motor rotates to open gate",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "41d8efd6-430a-416c-a5b9-a3c90322ff4f",
+      "value": true
+    },
+    {
+      "name": "Motor_Close",
+      "type": "BOOL",
+      "description": "Motor rotates to close gat",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "f29e59ab-1a90-4764-8f4f-6f95860c4e6e",
+      "value": false
+    },
+    {
+      "name": "System_Run",
+      "type": "BOOL",
+      "description": "Machine enabled",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "b05a9eff-1929-4e82-b32c-94ffe796b217",
+      "value": true
+    },
+    {
+      "name": "Gate_Opening",
+      "type": "BOOL",
+      "description": "Gate is opening",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "74aa77eb-2dd4-43f0-acca-073968a6ec05",
+      "value": false
+    },
+    {
+      "name": "Gate_Closing",
+      "type": "BOOL",
+      "description": "Gate is closing",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "5244dbfc-808c-430c-a312-2806ee283fd4",
+      "value": false
+    },
+    {
+      "name": "Open_Timer",
+      "type": "TIMER",
+      "description": "TON (On Delay Timer)",
+      "scope": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "id": "97b32198-dd24-4aa7-8779-8c6d82eb52a3",
+      "value": {
+        "ACC": 0,
+        "PRE": 0,
+        "DN": false,
+        "TT": false,
+        "EN": false
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "419650d6-5fa1-46ca-800b-23d477ad68f0",
+      "name": "MainTask",
+      "type": "Continuous",
+      "period": 100,
+      "mainRoutineId": "19b7b135-88d9-4d57-9d30-362987e1006f"
+    }
+  ],
+  "routines": [
+    {
+      "id": "19b7b135-88d9-4d57-9d30-362987e1006f",
+      "name": "MainRoutine",
+      "taskId": "419650d6-5fa1-46ca-800b-23d477ad68f0"
+    }
+  ],
+  "ladderLogic": {
+    "19b7b135-88d9-4d57-9d30-362987e1006f": [
+      {
+        "id": "92261f08-0d90-4314-9e63-4e40e194db22",
+        "conditions": [
+          {
+            "id": "f4346dee-cd0b-400e-900d-5ea2207f2980",
+            "type": "NC_CONTACT",
+            "tagId": "bcce4bf8-69b5-4450-b4f7-8c8634b9a7d0",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          },
+          {
+            "id": "c2efb4d1-3d60-489b-bb7d-b8b351d706a9",
+            "type": "BRANCH",
+            "legs": [
+              [
+                {
+                  "id": "176f5575-0336-4c65-b6b0-5f6ee2bd9128",
+                  "type": "NO_CONTACT",
+                  "tagId": "b05a9eff-1929-4e82-b32c-94ffe796b217",
+                  "subTag": "",
+                  "outputTagId": "",
+                  "outputSubTag": "",
+                  "sourceA": "",
+                  "sourceB": "",
+                  "dest": "",
+                  "destSubTag": "",
+                  "errorTagId": "",
+                  "errorSubTag": "",
+                  "preset": 0,
+                  "targetRoutineId": "",
+                  "parameterMap": {}
+                }
+              ],
+              [
+                {
+                  "id": "b0142108-fb7f-40a7-8a24-d6df2a9c3949",
+                  "type": "NO_CONTACT",
+                  "tagId": "e2cfae77-81f1-4e7f-8bf9-ea986d5bfd1b",
+                  "subTag": "",
+                  "outputTagId": "",
+                  "outputSubTag": "",
+                  "sourceA": "",
+                  "sourceB": "",
+                  "dest": "",
+                  "destSubTag": "",
+                  "errorTagId": "",
+                  "errorSubTag": "",
+                  "preset": 0,
+                  "targetRoutineId": "",
+                  "parameterMap": {}
+                }
+              ]
+            ]
+          }
+        ],
+        "coils": [
+          {
+            "id": "4d8eed86-8cdf-46c4-8a58-d7e761090feb",
+            "type": "OUTPUT_COIL",
+            "tagId": "b05a9eff-1929-4e82-b32c-94ffe796b217",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "2f3fb37a-46e1-49e9-b828-a1abcc875de6",
+        "conditions": [
+          {
+            "id": "3fb74f43-c066-4acf-8c78-4c2e0f2e19e0",
+            "type": "NO_CONTACT",
+            "tagId": "b05a9eff-1929-4e82-b32c-94ffe796b217",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          },
+          {
+            "id": "6cbf317e-d22c-4544-9213-30f50c0867eb",
+            "type": "NO_CONTACT",
+            "tagId": "c2f843b3-5211-4634-8d3e-f981cbf66a94",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "2b555743-3c74-4402-9101-274dcd5d861d",
+            "type": "OTL",
+            "tagId": "74aa77eb-2dd4-43f0-acca-073968a6ec05",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "78450cad-70d3-40ce-93a0-fe0436a87b94",
+        "conditions": [
+          {
+            "id": "482ad20a-3930-4933-9e0f-60bcccba4078",
+            "type": "NO_CONTACT",
+            "tagId": "74aa77eb-2dd4-43f0-acca-073968a6ec05",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "a6399466-e43c-4f5d-aa93-a1c8df10ed80",
+            "type": "OUTPUT_COIL",
+            "tagId": "41d8efd6-430a-416c-a5b9-a3c90322ff4f",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "7e65966f-22ef-4005-9232-ca1ae691469e",
+        "conditions": [
+          {
+            "id": "9ddcebdd-ca06-4015-bf03-be4fb774c9e2",
+            "type": "NO_CONTACT",
+            "tagId": "debb8356-8529-4211-8bed-59c24e45e32a",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "544297e0-a3b1-4e41-beef-5fdaefec9a00",
+            "type": "OTU",
+            "tagId": "74aa77eb-2dd4-43f0-acca-073968a6ec05",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "9d2785a4-a6d3-4a7e-9651-4c843a3eec3a",
+        "conditions": [
+          {
+            "id": "81f57013-763c-4ea1-99c2-ccfaebfa4a72",
+            "type": "NO_CONTACT",
+            "tagId": "debb8356-8529-4211-8bed-59c24e45e32a",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "eba73d3f-8757-46d6-b3fb-a784bcd71ba6",
+            "type": "TON",
+            "tagId": "97b32198-dd24-4aa7-8779-8c6d82eb52a3",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 5000,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "ddde47a2-78d8-4ee1-a98b-6a779c397e29",
+        "conditions": [
+          {
+            "id": "aa92bb67-0588-415a-aa6e-3b4ee61e41cb",
+            "type": "NO_CONTACT",
+            "tagId": "97b32198-dd24-4aa7-8779-8c6d82eb52a3",
+            "subTag": "DN",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "df03cb9d-5771-48c7-9d57-79ebdfdb0bb5",
+            "type": "OTL",
+            "tagId": "5244dbfc-808c-430c-a312-2806ee283fd4",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "fc04baaa-fc79-4ace-8d22-b6c2cda5a4cc",
+        "conditions": [
+          {
+            "id": "80648a83-f720-4a5c-9306-7458204c6e36",
+            "type": "NO_CONTACT",
+            "tagId": "5244dbfc-808c-430c-a312-2806ee283fd4",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "eb25406b-3765-4718-a782-4a2c22717d08",
+            "type": "OUTPUT_COIL",
+            "tagId": "f29e59ab-1a90-4764-8f4f-6f95860c4e6e",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "3b1c8cb5-3784-4fff-96c7-58b4a2620155",
+        "conditions": [
+          {
+            "id": "a521720e-0d74-48fb-95f4-4efb0e14c868",
+            "type": "NO_CONTACT",
+            "tagId": "e4c8ea47-38b2-49a3-83ee-4658165d19c3",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "2f63a948-075f-4e39-a422-8a5904af5efb",
+            "type": "OTU",
+            "tagId": "5244dbfc-808c-430c-a312-2806ee283fd4",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      },
+      {
+        "id": "cc2e8d52-e01a-48cb-a848-ebb17e7d48a5",
+        "conditions": [
+          {
+            "id": "4680ba1b-8938-4dbc-9598-fd504c6d86ac",
+            "type": "NO_CONTACT",
+            "tagId": "e4c8ea47-38b2-49a3-83ee-4658165d19c3",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ],
+        "coils": [
+          {
+            "id": "0a19a963-7c61-48ab-a68b-b5a637d940d9",
+            "type": "RES",
+            "tagId": "97b32198-dd24-4aa7-8779-8c6d82eb52a3",
+            "subTag": "",
+            "outputTagId": "",
+            "outputSubTag": "",
+            "sourceA": "",
+            "sourceB": "",
+            "dest": "",
+            "destSubTag": "",
+            "errorTagId": "",
+            "errorSubTag": "",
+            "preset": 0,
+            "targetRoutineId": "",
+            "parameterMap": {}
+          }
+        ]
+      }
+    ]
+  },
+  "functionBlockDefs": [],
+  "documentation": [],
+  "historians": [],
+  "sheetReaders": []
+}
